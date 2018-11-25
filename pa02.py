@@ -1,3 +1,4 @@
+#读取网址后写入文件
 import urllib.request
 
 url="https://github.com/"
