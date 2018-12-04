@@ -66,12 +66,15 @@ def main(offset):
     json=get_page(offset,"街拍",base_url)
     titleUrl=get_page_titleUrl(json)
     for item in titleUrl:
-        #print(item.get("title"))
+        print(item)
         save_image(item)
 
 GROUP_START=1
-GROUP_END=2
+GROUP_END=3
 
 if __name__ == "__main__":
-    for offset in range(GROUP_START,GROUP_END):
-        main(offset)
+    pool=Pool()
+    groups=([x*20 for x in range(GROUP_START,GROUP_END+1)])
+    pool.map(main,groups)
+    pool.close()
+    pool.join()
